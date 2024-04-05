@@ -3,7 +3,6 @@ def verify_plate(plate):
         first_chars = plate[:3].capitalize()
         last_chars = plate[3:]
         
-        #if all(char.isalpha() for char in first_chars) and all(char.isdigit() for char in last_chars):
         if first_chars.isalpha() and last_chars.isdigit():
             return True
         else:

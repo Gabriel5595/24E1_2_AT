@@ -4,16 +4,21 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from components.request_plate import request_plate
+from components.request_model import request_model
+from components.request_category import request_category
 
 def register_car(db_vehicles):
     plate = request_plate()
-    TODO: CREATE FUNCTION request_model()
-    TODO: CREATE FUNCTION request_category()
-    TODO: ADD IT ALL TO A NEW LIST
-    TODO: ADD NEW LIST TO db_vehicles
+    model = request_model()
+    category = request_category()
+    availability = -1
+    new_vehicle = [plate, model, category, availability]
+    db_vehicles.append(new_vehicle)
+    return db_vehicles
 
 def main():
     db_vehicles = []
-    register_car(db_vehicles)
+    db_vehicles = register_car(db_vehicles)
+    print(db_vehicles)
 
 main()

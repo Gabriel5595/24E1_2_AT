@@ -8,8 +8,3 @@ def request_plate():
             return plate
         else:
             print("The plate entered is not valid. Please enter a plate with 3 letters and 4 numbers.")
-
-def main():
-    print(request_plate())
-
-main()
