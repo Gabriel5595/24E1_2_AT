@@ -6,18 +6,4 @@ def request_email():
         if verify_email(email):
             return email
         else:
-            while True:
-                try:
-                    print("The entered email is not valid. Would you like to try again or exit?")
-                    option = int(input("1) Try again.\n2) Exit.\n"))
-                    
-                    if option == 1:
-                        request_email()
-                    if option == 2:
-                        break
-                    else:
-                        print("The selected option is not valid.")
-                    break
-                except ValueError:
-                    print("Please enter one of the valid options.")
-            return False
+            print("The entered email is not valid. Would you like to try again or exit?")

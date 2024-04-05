@@ -14,12 +14,9 @@ def register_user(db_clients):
     car = None
     new_user =[]
     
-    if email == False:
-        print("Not possible to finalize user registration since no valid email has been entered.")
-    else:
-        new_user = [cpf, name, surname, email, car]
-        db_clients.append(new_user)
-        return db_clients
+    new_user = [cpf, name, surname, email, car]
+    db_clients.append(new_user)
+    return db_clients
 
 def main():
     db_clients = [
