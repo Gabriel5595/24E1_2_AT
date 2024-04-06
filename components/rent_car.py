@@ -90,4 +90,6 @@ def rent_car(db_vehicles, db_clients):
             db_vehicles[vehicle_index[0]][3] = selected_client[0]
             db_clients[client_index[0]][4] = selected_vehicle[0]
             
+            print(f"Resumo da operação\nO carro {selected_vehicle[1]} de placa {selected_vehicle[0]} foi alugado pelo cliente {selected_client[1]} {selected_client[2]} de CPF {selected_client[0]} com sucesso!")
+            
             return db_vehicles, db_clients
