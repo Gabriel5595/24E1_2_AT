@@ -1,9 +1,16 @@
-def search_vehicle_plate(db_vehicles, plate):
-    result = []
-    for index in range(len(db_vehicles)):
-        if db_vehicles[index][0] == plate:
-            result.append(index)
-    return result
+import sys
+import os
+# Adiciona o diretório raiz do projeto ao sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from components.request_plate import request_plate
+from components.search_vehicle_plate import search_vehicle_plate
+from components.print_vehicle_list import print_vehicle_list
+
+def request_vehicle_search_plate(db_vehicles):
+    plate = request_plate()
+    indexes = search_vehicle_plate(db_vehicles, plate)
+    print_vehicle_list(db_vehicles, indexes)
 
 def main():
     db_vehicles = [
@@ -35,6 +42,6 @@ def main():
     ["EFG5677", "Hyundai Elantra", "Intermediary", -1],
     ["HIJ8909", "Tesla Model S", "Deluxe", -1]
     ]
-    print(search_vehicle_plate(db_vehicles, "BCD234"))
+    request_vehicle_search_plate(db_vehicles)
 
 main()
