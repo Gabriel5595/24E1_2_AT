@@ -19,6 +19,7 @@ def rent_car(db_vehicles, db_clients):
                         
                         if option == 1:
                             selected_vehicle = db_vehicles[vehicle_index[0]]
+                            
                         elif option == 2:
                             rent_car(db_vehicles, db_clients)
                         elif option == 3:
@@ -28,7 +29,7 @@ def rent_car(db_vehicles, db_clients):
                         break
                     except ValueError:
                         print("Please enter one of the valid options.")
-            else:
+            elif db_vehicles[vehicle_index[0]][3] != -1:
                 # Dá a opção de tentar novamente ou sair
                 while True:
                     try:

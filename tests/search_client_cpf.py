@@ -1,16 +1,11 @@
-def search_client(db_clients, term, name_or_surname=True):
+def search_client_cpf(db_clients, cpf):
     result = []
+
+    for index in range(len(db_clients)):
+        if db_clients[index][0] == cpf:
+            result.append(index)
     
-    if name_or_surname:
-        for index in range(len(db_clients)):
-            if db_clients[index][1] == term:
-                result.append(index)
-        return result
-    else:
-        for index in range(len(db_clients)):
-            if db_clients[index][2] == term:
-                result.append(index)
-        return result
+    return result
 
 def main():
     db_clients = [
@@ -46,7 +41,8 @@ def main():
     ['829.607.680-08', 'Bianca', 'Oliveira', 'bianca@oliveira.com', None],
     ['095.746.510-49', 'Vanessa', 'Silva', 'vanessa@silva.com', None]
     ]
+
     
-    print(search_client(db_clients, "Fernanda", True))
+    print(search_client_cpf(db_clients, '059.326.760-04'))
 
 main()

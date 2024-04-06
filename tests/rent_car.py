@@ -11,6 +11,7 @@ def rent_car(db_vehicles, db_clients):
         selected_vehicle = None
         plate = request_plate()
         
+        
         vehicle_index = search_vehicle_plate(db_vehicles, plate)
         
         # Verifica se o o index do veículo encontrado não está vazio (Veículo encontrado)
@@ -24,6 +25,36 @@ def rent_car(db_vehicles, db_clients):
                         
                         if option == 1:
                             selected_vehicle = db_vehicles[vehicle_index[0]]
+                            
+                            while True:
+                                cpf = request_cpf()
+        
+                                for client in range(len(db_clients)):
+                                    if cpf in db_clients[client][0]:
+                                        selected_client = db_clients[client]
+                                        client_index = [client]
+                                if selected_client == None:
+                                    while True:
+                                        try:
+                                            print("No client could be found with that CPF. Would you like to try again or exit?")
+                                            option = int(input("1) Try again.\n2) Exit.\n"))
+                                            
+                                            if option == 1:
+                                                pass
+                                            elif option == 2:
+                                                break
+                                            else:
+                                                print("The selected option is not valid.")
+                                        except ValueError:
+                                            print("Please enter one of the valid options.")
+                                else:
+                                    db_vehicles[vehicle_index[0]][3] = selected_client[0]
+                                    db_clients[client_index[0]][4] = selected_vehicle[0]
+                                    
+                                    print(f"Resumo da operação\nO carro {selected_vehicle[1]} de placa {selected_vehicle[0]} foi alugado pelo cliente {selected_client[1]} {selected_client[2]} de CPF {selected_client[0]} com sucesso!")
+                                    
+                                    return db_vehicles, db_clients
+                            
                         elif option == 2:
                             rent_car(db_vehicles, db_clients)
                         elif option == 3:
@@ -68,36 +99,14 @@ def rent_car(db_vehicles, db_clients):
                     print("Please enter one of the valid options.")
         
         
-        selected_client = None
-        client_index = None
+        
         cpf = request_cpf()
         
         for client in range(len(db_clients)):
             if cpf in db_clients[client][0]:
                 selected_client = db_clients[client]
                 client_index = [client]
-        if selected_client == None:
-            while True:
-                try:
-                    print("No client could be found with that CPF. Would you like to try again or exit?")
-                    option = int(input("1) Try again.\n2) Exit.\n"))
-                    
-                    if option == 1:
-                        rent_car(db_vehicles, db_clients)
-                    elif option == 2:
-                        break
-                    else:
-                        print("The selected option is not valid.")
-                    break
-                except ValueError:
-                    print("Please enter one of the valid options.")
-        else:
-            db_vehicles[vehicle_index[0]][3] = selected_client[0]
-            db_clients[client_index[0]][4] = selected_vehicle[0]
-            
-            print(f"Resumo da operação\nO carro {selected_vehicle[1]} de placa {selected_vehicle[0]} foi alugado pelo cliente {selected_client[1]} {selected_client[2]} de CPF {selected_client[0]} com sucesso!")
-            
-            return db_vehicles, db_clients
+        
             
         
         
