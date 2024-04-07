@@ -8,9 +8,3 @@ def verify_email(email):
             return False
     else:
         return False
-
-def main():
-    email = "gabriel@hotmail.com"
-    print(verify_email(email))
-
-main()
