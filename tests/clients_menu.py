@@ -1,16 +1,24 @@
-def clients_menu():
+import sys
+import os
+# Adiciona o diretório raiz do projeto ao sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from components.register_user import register_user
+from components.request_client_search import request_client_search
+
+def clients_menu(db_clients):
     while True:
         try:
             print("\n***CLIENTS MANAGEMENT***")
             print("Please, select one of the options below")
-            option = int(input("1) Register Client.\n2) Search Client.\n3) Return to Previous Menu."))
+            option = int(input("1) Register Client.\n2) Search Client.\n3) Return to Previous Menu.\n"))
             
             if option == 1:
-                pass
+                db_clients = register_user(db_clients)
             elif option == 2:
-                pass
+                request_client_search(db_clients)
             elif option == 3:
-                pass
+                return db_clients
             else:
                 print("The selected option is not valid.")
         except ValueError:
@@ -18,37 +26,37 @@ def clients_menu():
 
 def main():
     db_clients = [
-    ['123.456.789-00', 'Joao', 'Silva', 'joao@silva.com', "JKL0124"],
-    ['987.654.321-00', 'Maria', 'Santos', 'maria@santos.com', None],
-    ['111.222.333-44', 'Pedro', 'Souza', 'pedro@souza.com', None],
-    ['555.666.777-88', 'Ana', 'Oliveira', 'ana@oliveira.com', None],
-    ['999.888.777-66', 'Carlos', 'Ferreira', 'carlos@ferreira.com', None],
-    ['333.222.111-00', 'Juliana', 'Almeida', 'juliana@almeida.com', None],
-    ['777.888.999-11', 'Lucas', 'Gomes', 'lucas@gomes.com', None],
-    ['444.555.666-77', 'Mariana', 'Pereira', 'mariana@pereira.com', None],
-    ['000.999.888-77', 'Fernando', 'Machado', 'fernando@machado.com', None],
-    ['222.333.444-55', 'Camila', 'Costa', 'camila@costa.com', None],
-    ['666.777.888-99', 'Rodrigo', 'Ribeiro', 'rodrigo@ribeiro.com', None],
-    ['888.999.000-11', 'Amanda', 'Martins', 'amanda@martins.com', None],
-    ['555.444.333-22', 'Mateus', 'Lima', 'mateus@lima.com', None],
-    ['777.666.555-44', 'Isabela', 'Barbosa', 'isabela@barbosa.com', None],
-    ['111.222.333-44', 'Gabriel', 'Fernandes', 'gabriel@fernandes.com', None],
-    ['333.444.555-66', 'Laura', 'Dias', 'laura@dias.com', None],
-    ['666.555.444-33', 'Larissa', 'Oliveira', 'larissa@oliveira.com', None],
-    ['222.333.444-55', 'Rafael', 'Silveira', 'rafael@silveira.com', None],
-    ['999.888.777-66', 'Beatriz', 'Araujo', 'beatriz@araujo.com', None],
-    ['444.555.666-77', 'Vinicius', 'Rocha', 'vinicius@rocha.com', None],
-    ['777.888.999-11', 'Luiza', 'Carvalho', 'luiza@carvalho.com', None],
-    ['000.999.888-77', 'Eduardo', 'Cardoso', 'eduardo@cardoso.com', None],
-    ['333.222.111-00', 'Natalia', 'Mendes', 'natalia@mendes.com', None],
-    ['888.999.000-11', 'Gustavo', 'Farias', 'gustavo@farias.com', None],
-    ['111.222.333-44', 'Carolina', 'Araujo', 'carolina@araujo.com', None],
-    ['555.444.333-22', 'Matheus', 'Melo', 'matheus@melo.com', None],
-    ['666.555.444-33', 'Letícia', 'Cruz', 'leticia@cruz.com', None],
-    ['222.333.444-55', 'Fernanda', 'Pinto', 'fernanda@pinto.com', None],
-    ['999.888.777-66', 'Roberto', 'Nunes', 'roberto@nunes.com', None],
-    ['444.555.666-77', 'Bianca', 'Oliveira', 'bianca@oliveira.com', None],
-    ['777.888.999-11', 'Vanessa', 'Silva', 'vanessa@silva.com', None]
+    ['174.444.283-52', 'Joao', 'Silva', 'joao@silva.com', None]
+    ['080.524.161-24', 'Maria', 'Santos', 'maria@santos.com', None]
+    ['043.713.499-78', 'Pedro', 'Souza', 'pedro@souza.com', None]
+    ['229.230.332-99', 'Ana', 'Oliveira', 'ana@oliveira.com', None]
+    ['956.904.950-26', 'Carlos', 'Ferreira', 'carlos@ferreira.com', None]
+    ['407.819.248-39', 'Juliana', 'Almeida', 'juliana@almeida.com', None]
+    ['160.302.077-25', 'Lucas', 'Gomes', 'lucas@gomes.com', None]
+    ['284.877.191-71', 'Mariana', 'Pereira', 'mariana@pereira.com', None]
+    ['633.851.771-03', 'Fernando', 'Machado', 'fernando@machado.com', None]
+    ['625.754.113-19', 'Camila', 'Costa', 'camila@costa.com', None]
+    ['301.148.271-33', 'Rodrigo', 'Ribeiro', 'rodrigo@ribeiro.com', None]
+    ['384.718.888-74', 'Amanda', 'Martins', 'amanda@martins.com', None]
+    ['237.252.060-15', 'Mateus', 'Lima', 'mateus@lima.com', None]
+    ['876.876.661-00', 'Isabela', 'Barbosa', 'isabela@barbosa.com', None]
+    ['383.288.562-55', 'Gabriel', 'Fernandes', 'gabriel@fernandes.com', None]
+    ['149.641.857-37', 'Laura', 'Dias', 'laura@dias.com', None]
+    ['606.619.076-86', 'Larissa', 'Oliveira', 'larissa@oliveira.com', None]
+    ['745.084.623-32', 'Rafael', 'Silveira', 'rafael@silveira.com', None]
+    ['140.269.547-06', 'Beatriz', 'Araujo', 'beatriz@araujo.com', None]
+    ['578.619.742-51', 'Vinicius', 'Rocha', 'vinicius@rocha.com', None]
+    ['245.548.981-72', 'Luiza', 'Carvalho', 'luiza@carvalho.com', None]
+    ['337.272.634-07', 'Eduardo', 'Cardoso', 'eduardo@cardoso.com', None]
+    ['858.080.774-35', 'Natalia', 'Mendes', 'natalia@mendes.com', None]
+    ['603.716.674-96', 'Gustavo', 'Farias', 'gustavo@farias.com', None]
+    ['195.457.947-04', 'Carolina', 'Araujo', 'carolina@araujo.com', None]
+    ['667.342.873-27', 'Matheus', 'Melo', 'matheus@melo.com', None]
+    ['532.933.496-92', 'Letícia', 'Cruz', 'leticia@cruz.com', None]
+    ['925.997.686-32', 'Fernanda', 'Pinto', 'fernanda@pinto.com', None]
+    ['719.066.401-73', 'Roberto', 'Nunes', 'roberto@nunes.com', None]
+    ['481.432.199-68', 'Bianca', 'Oliveira', 'bianca@oliveira.com', None]
+    ['624.357.141-65', 'Vanessa', 'Silva', 'vanessa@silva.com', None]
 ]
     db_vehicles = [
     ["JKL0124", "Ford Focus", "Basic", '123.456.789-00'],
@@ -79,6 +87,6 @@ def main():
     ["EFG5677", "Hyundai Elantra", "Intermediary", -1],
     ["HIJ8909", "Tesla Model S", "Deluxe", -1]
 ]
-    clients_menu()
+    clients_menu(db_clients)
 
 main()

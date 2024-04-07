@@ -1,3 +1,6 @@
+from components.verify_car_rent import verify_car_rent
+from components.verify_client_rent import verify_client_rent
+
 def rent_car(db_vehicles, db_clients):
     selected_vehicle = None
     selected_client = None
