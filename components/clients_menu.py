@@ -1,6 +1,5 @@
 from components.register_user import register_user
 from components.request_client_search import request_client_search
-from components.main_menu import main_menu
 
 def clients_menu(db_vehicles, db_clients):
     while True:
@@ -14,7 +13,7 @@ def clients_menu(db_vehicles, db_clients):
             elif option == 2:
                 request_client_search(db_clients)
             elif option == 3:
-                main_menu(db_vehicles, db_clients)
+                return db_vehicles, db_clients
             else:
                 print("The selected option is not valid.")
         except ValueError:

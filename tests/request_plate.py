@@ -10,7 +10,7 @@ def request_plate():
         plate = input("Please enter the plate of the vehicle (ABC1234): ")
         
         if verify_plate(plate):
-            return plate
+            return plate.upper()
         else:
             print("The plate entered is not valid. Please enter a plate with 3 letters and 4 numbers.")
 

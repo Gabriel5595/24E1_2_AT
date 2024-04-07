@@ -1,6 +1,5 @@
 from components.rent_car import rent_car
 from components.return_vehicle import return_vehicle
-from components.main_menu import main_menu
 
 def rents_menu(db_vehicles, db_clients):
     while True:
@@ -14,7 +13,7 @@ def rents_menu(db_vehicles, db_clients):
             elif option == 2:
                 db_vehicles, db_clients = return_vehicle(db_vehicles,db_clients)
             elif option == 3:
-                main_menu(db_vehicles, db_clients)
+                return db_vehicles, db_clients
             else:
                 print("The selected option is not valid.")
         except ValueError:

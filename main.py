@@ -1,4 +1,7 @@
-db_clients = [
+from components.main_menu import main_menu
+
+def main():
+    db_clients = [
     ['738.341.011-41', 'Joao', 'Silva', 'joao@silva.com', None],
     ['642.664.531-16', 'Maria', 'Santos', 'maria@santos.com', None],
     ['766.457.362-90', 'Pedro', 'Souza', 'pedro@souza.com', None],
@@ -31,9 +34,8 @@ db_clients = [
     ['713.384.161-46', 'Bianca', 'Oliveira', 'bianca@oliveira.com', None],
     ['212.121.571-92', 'Vanessa', 'Silva', 'vanessa@silva.com', None],
 ]
-    
     db_vehicles = [
-    ["JKL0124", "Ford Focus", "Basic", '123.456.789-00'],
+    ["JKL0124", "Ford Focus", "Basic", -1],
     ["MNO3455", "Chevrolet Cruze", "Intermediary", -1],
     ["PQR6786", "Audi A4", "Deluxe", -1],
     ["STU9012", "Volkswagen Golf", "Basic", -1],
@@ -60,4 +62,8 @@ db_clients = [
     ["BCD2343", "Nissan Maxima", "Basic", -1],
     ["EFG5677", "Hyundai Elantra", "Intermediary", -1],
     ["HIJ8909", "Tesla Model S", "Deluxe", -1]
-    ]
+]
+    
+    main_menu(db_vehicles, db_clients)
+
+main()

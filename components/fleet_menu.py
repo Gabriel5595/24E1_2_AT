@@ -1,7 +1,6 @@
 from components.register_car import register_car
 from components.request_vehicle_search_availability import request_vehicle_search_availability
 from components.request_vehicle_search_plate import request_vehicle_search_plate
-from components.main_menu import main_menu
 
 def fleet_menu(db_vehicles, db_clients):
     while True:
@@ -17,7 +16,7 @@ def fleet_menu(db_vehicles, db_clients):
             elif option == 3:
                 request_vehicle_search_availability(db_vehicles)
             elif option == 4:
-                main_menu(db_vehicles, db_clients)
+                return db_vehicles, db_clients
             else:
                 print("The selected option is not valid.")
         except ValueError:
