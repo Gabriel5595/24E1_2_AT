@@ -3,147 +3,68 @@ import os
 # Adiciona o diretório raiz do projeto ao sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from components.search_vehicle_plate import search_vehicle_plate
-from components.request_plate import request_plate
-from components.request_cpf import request_cpf
+from components.verify_client_rent import verify_client_rent
+from components.verify_car_rent import verify_car_rent
 
 def rent_car(db_vehicles, db_clients):
-        selected_vehicle = None
-        plate = request_plate()
+    selected_vehicle = None
+    selected_client = None
+    
+    selected_vehicle, vehicle_index = verify_car_rent(db_vehicles)
+    
+    if (selected_vehicle != None):
         
+        selected_client, client_index = verify_client_rent(db_clients)
         
-        vehicle_index = search_vehicle_plate(db_vehicles, plate)
-        
-        # Verifica se o o index do veículo encontrado não está vazio (Veículo encontrado)
-        if vehicle_index != []:
-            if db_vehicles[vehicle_index[0]][3] == -1:
-                print(db_vehicles[vehicle_index[0]])
-                while True:
-                    try:
-                        print("Is the vehicle correct? If not, would you like to try again or exit?")
-                        option = int(input("1) It is correct\n2) Try again.\n3) Exit.\n"))
-                        
-                        if option == 1:
-                            selected_vehicle = db_vehicles[vehicle_index[0]]
-                            
-                            while True:
-                                cpf = request_cpf()
-        
-                                for client in range(len(db_clients)):
-                                    if cpf in db_clients[client][0]:
-                                        selected_client = db_clients[client]
-                                        client_index = [client]
-                                if selected_client == None:
-                                    while True:
-                                        try:
-                                            print("No client could be found with that CPF. Would you like to try again or exit?")
-                                            option = int(input("1) Try again.\n2) Exit.\n"))
-                                            
-                                            if option == 1:
-                                                pass
-                                            elif option == 2:
-                                                break
-                                            else:
-                                                print("The selected option is not valid.")
-                                        except ValueError:
-                                            print("Please enter one of the valid options.")
-                                else:
-                                    db_vehicles[vehicle_index[0]][3] = selected_client[0]
-                                    db_clients[client_index[0]][4] = selected_vehicle[0]
-                                    
-                                    print(f"Resumo da operação\nO carro {selected_vehicle[1]} de placa {selected_vehicle[0]} foi alugado pelo cliente {selected_client[1]} {selected_client[2]} de CPF {selected_client[0]} com sucesso!")
-                                    
-                                    return db_vehicles, db_clients
-                            
-                        elif option == 2:
-                            rent_car(db_vehicles, db_clients)
-                        elif option == 3:
-                            break
-                        else:
-                            print("The selected option is not valid.")
-                        break
-                    except ValueError:
-                        print("Please enter one of the valid options.")
-            else:
-                # Dá a opção de tentar novamente ou sair
-                while True:
-                    try:
-                        print("The selected vehicle is unavailable. Would you like to select another or exit?")
-                        option = int(input("1) Try again.\n2) Exit.\n"))
-                        
-                        if option == 1:
-                            rent_car(db_vehicles, db_clients)
-                        elif option == 2:
-                            break
-                        else:
-                            print("The selected option is not valid.")
-                        break
-                    except ValueError:
-                        print("Please enter one of the valid options.")
-        # Verifica se o o index do veículo encontrado está vazio (Veículo não encontrado)
-        else:
-            # Dá a opção de tentar novamente ou sair
-            while True:
-                try:
-                    print("The entered plate is not valid. Would you like to try again or exit?")
-                    option = int(input("1) Try again.\n2) Exit.\n"))
-                    
-                    if option == 1:
-                        rent_car(db_vehicles, db_clients)
-                    elif option == 2:
-                        break
-                    else:
-                        print("The selected option is not valid.")
-                    break
-                except ValueError:
-                    print("Please enter one of the valid options.")
-        
-        
-        
-        cpf = request_cpf()
-        
-        for client in range(len(db_clients)):
-            if cpf in db_clients[client][0]:
-                selected_client = db_clients[client]
-                client_index = [client]
-        
+        if (selected_client != None):
             
+            db_vehicles[vehicle_index[0]][3] = selected_client[0]
+            db_clients[client_index[0]][4] = selected_vehicle[0]
+            
+            print(f"Resumo da operação\nO carro {selected_vehicle[1]} de placa {selected_vehicle[0]} foi alugado pelo cliente {selected_client[1]} {selected_client[2]} de CPF {selected_client[0]} com sucesso!")
         
+            return db_vehicles, db_clients
         
+        else:
+            return db_vehicles, db_clients
+    else:
+        return db_vehicles, db_clients
+
 def main():
     db_clients = [
-    ['123.456.789-00', 'Joao', 'Silva', 'joao@silva.com', "JKL0124"],
-    ['987.654.321-00', 'Maria', 'Santos', 'maria@santos.com', None],
-    ['111.222.333-44', 'Pedro', 'Souza', 'pedro@souza.com', None],
-    ['555.666.777-88', 'Ana', 'Oliveira', 'ana@oliveira.com', None],
-    ['999.888.777-66', 'Carlos', 'Ferreira', 'carlos@ferreira.com', None],
-    ['333.222.111-00', 'Juliana', 'Almeida', 'juliana@almeida.com', None],
-    ['777.888.999-11', 'Lucas', 'Gomes', 'lucas@gomes.com', None],
-    ['444.555.666-77', 'Mariana', 'Pereira', 'mariana@pereira.com', None],
-    ['000.999.888-77', 'Fernando', 'Machado', 'fernando@machado.com', None],
-    ['222.333.444-55', 'Camila', 'Costa', 'camila@costa.com', None],
-    ['666.777.888-99', 'Rodrigo', 'Ribeiro', 'rodrigo@ribeiro.com', None],
-    ['888.999.000-11', 'Amanda', 'Martins', 'amanda@martins.com', None],
-    ['555.444.333-22', 'Mateus', 'Lima', 'mateus@lima.com', None],
-    ['777.666.555-44', 'Isabela', 'Barbosa', 'isabela@barbosa.com', None],
-    ['111.222.333-44', 'Gabriel', 'Fernandes', 'gabriel@fernandes.com', None],
-    ['333.444.555-66', 'Laura', 'Dias', 'laura@dias.com', None],
-    ['666.555.444-33', 'Larissa', 'Oliveira', 'larissa@oliveira.com', None],
-    ['222.333.444-55', 'Rafael', 'Silveira', 'rafael@silveira.com', None],
-    ['999.888.777-66', 'Beatriz', 'Araujo', 'beatriz@araujo.com', None],
-    ['444.555.666-77', 'Vinicius', 'Rocha', 'vinicius@rocha.com', None],
-    ['777.888.999-11', 'Luiza', 'Carvalho', 'luiza@carvalho.com', None],
-    ['000.999.888-77', 'Eduardo', 'Cardoso', 'eduardo@cardoso.com', None],
-    ['333.222.111-00', 'Natalia', 'Mendes', 'natalia@mendes.com', None],
-    ['888.999.000-11', 'Gustavo', 'Farias', 'gustavo@farias.com', None],
-    ['111.222.333-44', 'Carolina', 'Araujo', 'carolina@araujo.com', None],
-    ['555.444.333-22', 'Matheus', 'Melo', 'matheus@melo.com', None],
-    ['666.555.444-33', 'Letícia', 'Cruz', 'leticia@cruz.com', None],
-    ['222.333.444-55', 'Fernanda', 'Pinto', 'fernanda@pinto.com', None],
-    ['999.888.777-66', 'Roberto', 'Nunes', 'roberto@nunes.com', None],
-    ['444.555.666-77', 'Bianca', 'Oliveira', 'bianca@oliveira.com', None],
-    ['777.888.999-11', 'Vanessa', 'Silva', 'vanessa@silva.com', None]
-]
+    ['013.394.711-40', 'Joao', 'Silva', 'joao@silva.com', None],
+    ['123.456.789-00', 'Maria', 'Santos', 'maria@santos.com', "JKL0124"],
+    ['275.567.830-87', 'Pedro', 'Souza', 'pedro@souza.com', None],
+    ['734.516.170-60', 'Ana', 'Oliveira', 'ana@oliveira.com', None],
+    ['317.963.250-25', 'Carlos', 'Ferreira', 'carlos@ferreira.com', None],
+    ['478.025.030-47', 'Juliana', 'Almeida', 'juliana@almeida.com', None],
+    ['719.439.330-02', 'Lucas', 'Gomes', 'lucas@gomes.com', None],
+    ['097.435.330-05', 'Mariana', 'Pereira', 'mariana@pereira.com', None],
+    ['920.748.940-01', 'Fernando', 'Machado', 'fernando@machado.com', None],
+    ['602.801.450-08', 'Camila', 'Costa', 'camila@costa.com', None],
+    ['483.688.120-91', 'Rodrigo', 'Ribeiro', 'rodrigo@ribeiro.com', None],
+    ['689.394.490-36', 'Amanda', 'Martins', 'amanda@martins.com', None],
+    ['126.540.460-80', 'Mateus', 'Lima', 'mateus@lima.com', None],
+    ['037.587.170-45', 'Isabela', 'Barbosa', 'isabela@barbosa.com', None],
+    ['141.983.080-34', 'Gabriel', 'Fernandes', 'gabriel@fernandes.com', None],
+    ['370.195.620-47', 'Laura', 'Dias', 'laura@dias.com', None],
+    ['059.326.760-04', 'Larissa', 'Oliveira', 'larissa@oliveira.com', None],
+    ['649.720.600-02', 'Rafael', 'Silveira', 'rafael@silveira.com', None],
+    ['581.002.500-80', 'Beatriz', 'Araujo', 'beatriz@araujo.com', None],
+    ['417.951.380-58', 'Vinicius', 'Rocha', 'vinicius@rocha.com', None],
+    ['073.415.600-05', 'Luiza', 'Carvalho', 'luiza@carvalho.com', None],
+    ['139.025.630-01', 'Eduardo', 'Cardoso', 'eduardo@cardoso.com', None],
+    ['290.853.820-01', 'Natalia', 'Mendes', 'natalia@mendes.com', None],
+    ['327.948.340-94', 'Gustavo', 'Farias', 'gustavo@farias.com', None],
+    ['248.100.710-77', 'Carolina', 'Araujo', 'carolina@araujo.com', None],
+    ['647.068.230-33', 'Matheus', 'Melo', 'matheus@melo.com', None],
+    ['948.326.980-19', 'Letícia', 'Cruz', 'leticia@cruz.com', None],
+    ['520.471.760-48', 'Fernanda', 'Pinto', 'fernanda@pinto.com', None],
+    ['774.569.180-98', 'Roberto', 'Nunes', 'roberto@nunes.com', None],
+    ['829.607.680-08', 'Bianca', 'Oliveira', 'bianca@oliveira.com', None],
+    ['095.746.510-49', 'Vanessa', 'Silva', 'vanessa@silva.com', None]
+    ]
+    
     db_vehicles = [
     ["JKL0124", "Ford Focus", "Basic", '123.456.789-00'],
     ["MNO3455", "Chevrolet Cruze", "Intermediary", -1],
@@ -172,7 +93,8 @@ def main():
     ["BCD2343", "Nissan Maxima", "Basic", -1],
     ["EFG5677", "Hyundai Elantra", "Intermediary", -1],
     ["HIJ8909", "Tesla Model S", "Deluxe", -1]
-]
+    ]
+    
     rent_car(db_vehicles, db_clients)
 
 main()
