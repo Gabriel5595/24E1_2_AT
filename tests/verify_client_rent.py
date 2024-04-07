@@ -79,38 +79,38 @@ def verify_client_rent(db_clients):
 
 def main():
     db_clients = [
-    ['144.958.659-38', 'Joao', 'Silva', 'joao@silva.com', None],
-    ['097.325.168-96', 'Maria', 'Santos', 'maria@santos.com', None],
-    ['472.589.341-00', 'Pedro', 'Souza', 'pedro@souza.com', None],
-    ['924.781.653-79', 'Ana', 'Oliveira', 'ana@oliveira.com', None],
-    ['315.789.240-08', 'Carlos', 'Ferreira', 'carlos@ferreira.com', None],
-    ['534.678.921-80', 'Juliana', 'Almeida', 'juliana@almeida.com', None],
-    ['709.852.634-20', 'Lucas', 'Gomes', 'lucas@gomes.com', None],
-    ['199.675.824-64', 'Mariana', 'Pereira', 'mariana@pereira.com', None],
-    ['562.038.491-29', 'Fernando', 'Machado', 'fernando@machado.com', None],
-    ['892.310.467-60', 'Camila', 'Costa', 'camila@costa.com', None],
-    ['456.831.972-46', 'Rodrigo', 'Ribeiro', 'rodrigo@ribeiro.com', None],
-    ['648.209.734-09', 'Amanda', 'Martins', 'amanda@martins.com', None],
-    ['239.801.345-84', 'Mateus', 'Lima', 'mateus@lima.com', None],
-    ['701.934.286-11', 'Isabela', 'Barbosa', 'isabela@barbosa.com', None],
-    ['843.062.485-10', 'Gabriel', 'Fernandes', 'gabriel@fernandes.com', None],
-    ['199.824.736-75', 'Laura', 'Dias', 'laura@dias.com', None],
-    ['538.127.549-88', 'Larissa', 'Oliveira', 'larissa@oliveira.com', None],
-    ['426.589.107-00', 'Rafael', 'Silveira', 'rafael@silveira.com', None],
-    ['764.892.310-07', 'Beatriz', 'Araujo', 'beatriz@araujo.com', None],
-    ['364.718.925-14', 'Vinicius', 'Rocha', 'vinicius@rocha.com', None],
-    ['501.379.468-20', 'Luiza', 'Carvalho', 'luiza@carvalho.com', None],
-    ['218.345.689-30', 'Eduardo', 'Cardoso', 'eduardo@cardoso.com', None],
-    ['128.459.370-57', 'Natalia', 'Mendes', 'natalia@mendes.com', None],
-    ['579.162.834-80', 'Gustavo', 'Farias', 'gustavo@farias.com', None],
-    ['489.276.135-47', 'Carolina', 'Araujo', 'carolina@araujo.com', None],
-    ['673.481.902-02', 'Matheus', 'Melo', 'matheus@melo.com', None],
-    ['327.541.986-83', 'Letícia', 'Cruz', 'leticia@cruz.com', None],
-    ['862.439.185-02', 'Fernanda', 'Pinto', 'fernanda@pinto.com', None],
-    ['930.715.842-15', 'Roberto', 'Nunes', 'roberto@nunes.com', None],
-    ['176.985.324-00', 'Bianca', 'Oliveira', 'bianca@oliveira.com', None],
-    ['654.271.809-63', 'Vanessa', 'Silva', 'vanessa@silva.com', None]
-    ]
+    ['174.444.283-52', 'Joao', 'Silva', 'joao@silva.com', None]
+    ['080.524.161-24', 'Maria', 'Santos', 'maria@santos.com', None]
+    ['043.713.499-78', 'Pedro', 'Souza', 'pedro@souza.com', None]
+    ['229.230.332-99', 'Ana', 'Oliveira', 'ana@oliveira.com', None]
+    ['956.904.950-26', 'Carlos', 'Ferreira', 'carlos@ferreira.com', None]
+    ['407.819.248-39', 'Juliana', 'Almeida', 'juliana@almeida.com', None]
+    ['160.302.077-25', 'Lucas', 'Gomes', 'lucas@gomes.com', None]
+    ['284.877.191-71', 'Mariana', 'Pereira', 'mariana@pereira.com', None]
+    ['633.851.771-03', 'Fernando', 'Machado', 'fernando@machado.com', None]
+    ['625.754.113-19', 'Camila', 'Costa', 'camila@costa.com', None]
+    ['301.148.271-33', 'Rodrigo', 'Ribeiro', 'rodrigo@ribeiro.com', None]
+    ['384.718.888-74', 'Amanda', 'Martins', 'amanda@martins.com', None]
+    ['237.252.060-15', 'Mateus', 'Lima', 'mateus@lima.com', None]
+    ['876.876.661-00', 'Isabela', 'Barbosa', 'isabela@barbosa.com', None]
+    ['383.288.562-55', 'Gabriel', 'Fernandes', 'gabriel@fernandes.com', None]
+    ['149.641.857-37', 'Laura', 'Dias', 'laura@dias.com', None]
+    ['606.619.076-86', 'Larissa', 'Oliveira', 'larissa@oliveira.com', None]
+    ['745.084.623-32', 'Rafael', 'Silveira', 'rafael@silveira.com', None]
+    ['140.269.547-06', 'Beatriz', 'Araujo', 'beatriz@araujo.com', None]
+    ['578.619.742-51', 'Vinicius', 'Rocha', 'vinicius@rocha.com', None]
+    ['245.548.981-72', 'Luiza', 'Carvalho', 'luiza@carvalho.com', None]
+    ['337.272.634-07', 'Eduardo', 'Cardoso', 'eduardo@cardoso.com', None]
+    ['858.080.774-35', 'Natalia', 'Mendes', 'natalia@mendes.com', None]
+    ['603.716.674-96', 'Gustavo', 'Farias', 'gustavo@farias.com', None]
+    ['195.457.947-04', 'Carolina', 'Araujo', 'carolina@araujo.com', None]
+    ['667.342.873-27', 'Matheus', 'Melo', 'matheus@melo.com', None]
+    ['532.933.496-92', 'Letícia', 'Cruz', 'leticia@cruz.com', None]
+    ['925.997.686-32', 'Fernanda', 'Pinto', 'fernanda@pinto.com', None]
+    ['719.066.401-73', 'Roberto', 'Nunes', 'roberto@nunes.com', None]
+    ['481.432.199-68', 'Bianca', 'Oliveira', 'bianca@oliveira.com', None]
+    ['624.357.141-65', 'Vanessa', 'Silva', 'vanessa@silva.com', None]
+]
 
     selected_client, client_index = verify_client_rent(db_clients)
     print(client_index)
